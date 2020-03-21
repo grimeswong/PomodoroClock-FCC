@@ -1,0 +1,49 @@
+/**
+ *  This is maxin file that preset the device width with animation functions
+ **/
+
+$mobile-width: 576px;
+$tablet-width: 768px;
+$desktop-width: 992px;
+$large-desktop-width: 1200px;
+
+@mixin mobile {
+  @media only screen and (max-width: #{$mobile-width - 1px} ) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$mobile-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin large-desktop {
+  @media (min-width: #{$large-desktop-width}) {
+    @content;
+  }
+}
+
+// animation
+@mixin animation($name, $duration, $timingFunc, $delay, $iterationCount, $direction, $fillMode, $playState) {
+  animation-name: $name;
+  animation-duration: $duration; /* "time|initial|inherit" */
+  animation-timing-function: $timingFunc ; /* "linear|ease|ease-in|ease-out|cubic-bezier(n, n, n, n)|initial|inherit" */
+  animation-delay: $delay; /* time|initial|inherit" */
+  animation-iteration-count: $iterationCount; /* "number|infinite|initial|inherit" */
+  animation-direction: $direction; /* "normal|reverse|alternate|alternate-reverse|initial|inherit" */
+  animation-fill-mode: $fillMode; /* "none|forwards|backwards|both|initial|inherit" */
+  animation-play-state: $playState; /* "running|paused|initial|inherit" */
+}
+
+// font size
+@mixin content-text-size($defaultSize) {
+  font-size: $defaultSize;
+}

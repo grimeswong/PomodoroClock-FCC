@@ -1,0 +1,19 @@
+/**
+ *  This is the base style sheet include google fonts that can be added or changed
+ **/
+
+// Google fonts
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto|Lora|Sriracha');
+
+ body {
+   font-family: 'Open Sans', 'Roboto', 'Oxygen',
+     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+     sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+ }
+
+ code {
+   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+     monospace;
+ }

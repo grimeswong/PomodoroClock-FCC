@@ -1,0 +1,37 @@
+/**
+  * This sytle sheet store all the App's variables
+  **/
+
+
+// Colour
+$white: #fff;
+$black: #000;
+$blue: #0083ee;
+
+// Theme Colour
+$primary: $white;
+
+// Fonts
+$font-primary: 'Open Sans';
+$font-title: 'Roboto';
+$font-text: 'Open Sans';
+$font-secondary: 'Lora';
+$font-title2: 'Sriracha';
+$font-text2: 'Sriracha';
+
+// Font font-size
+$desktop-font-size: 1.8rem;
+$mobile-font-size: 2rem;
+
+// radial-gradient
+$rad-grad-colour-1: #140e14;
+$rad-grad-colour-2: #000000;
+$rad-grad-colour-3: #201620;
+
+// text-shadow
+$text-shadow-colour-1: #FFF;
+$text-shadow-colour-2: #555555;
+$text-shadow-colour-3: #000;
+
+// linear background Colour
+$linear-bg-1: linear-gradient(135deg, $blue, #034174);

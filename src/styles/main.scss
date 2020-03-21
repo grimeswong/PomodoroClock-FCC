@@ -1,0 +1,23 @@
+/***
+  * The is the main SCSS file
+  * Only put @import files
+  **/
+
+
+
+// Global Reset / Base
+@import './_agent-reset.css';
+@import './_base.scss';
+
+// Variables
+@import './variables.scss';
+@import './mixin.scss';
+
+// Components
+// @import './preloader.scss';
+@import './app.scss';
+
+
+// Layout
+// @import './footer.scss';
+// @import './mobile.scss';
