@@ -55,7 +55,7 @@ function App() {
 
         <div className="countdown-wrapper">
           <div id="timer-label">Session</div>
-          <div id="time-left">mm:ss</div>
+          <div id="time-left">{sessionLength}:00</div>
           <button id="start_stop"><FontAwesomeIcon icon={faPlay} size="lg" /> | <FontAwesomeIcon icon={faPause} size="lg" /></button>
           <button id="reset"><FontAwesomeIcon icon={faSync} size="lg" /> Reset</button>
         </div>
