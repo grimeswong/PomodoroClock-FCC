@@ -1,5 +1,7 @@
 import React from 'react';
 import './styles/main.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronUp, faChevronDown, faPlay, faPause, faStop, faSync} from '@fortawesome/free-solid-svg-icons'
 
 function App() {
   return (
@@ -10,17 +12,17 @@ function App() {
           <div className="control-wrapper">
             <div id="session-label">Session Length</div>
             <div className="control">
-              <button id="session-decrement">Down</button>
+              <button id="session-decrement"><FontAwesomeIcon icon={faChevronDown} size="lg"/></button>
               <div id="session-length">25</div>
-              <button id="session-Increment">Up</button>
+              <button id="session-Increment"><FontAwesomeIcon icon={faChevronUp} size="lg" /></button>
             </div>
           </div>
           <div className="control-wrapper">
             <div id="break-label">Break Length</div>
             <div className="control">
-              <button id="break-decrement">Down</button>
+              <button id="break-decrement"><FontAwesomeIcon icon={faChevronDown} size="lg" /></button>
               <div id="break-length">5</div>
-              <button id="break-increment">Up</button>
+              <button id="break-increment"><FontAwesomeIcon icon={faChevronUp}  size="lg" /></button>
             </div>
           </div>
         </div>
@@ -28,8 +30,8 @@ function App() {
         <div className="countdown-wrapper">
           <div id="timer-label">Session</div>
           <div id="time-left">mm:ss</div>
-          <button id="start_stop">Start/Stop</button>
-          <button id="reset">Reset</button>
+          <button id="start_stop"><FontAwesomeIcon icon={faPlay} size="lg" /> | <FontAwesomeIcon icon={faPause} size="lg" /></button>
+          <button id="reset"><FontAwesomeIcon icon={faSync} size="lg" /> Reset</button>
         </div>
 
       </div>
