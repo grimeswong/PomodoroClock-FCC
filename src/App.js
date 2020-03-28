@@ -33,7 +33,6 @@ function App() {
           <button id="start_stop"><FontAwesomeIcon icon={faPlay} size="lg" /> | <FontAwesomeIcon icon={faPause} size="lg" /></button>
           <button id="reset"><FontAwesomeIcon icon={faSync} size="lg" /> Reset</button>
         </div>
-
       </div>
     </div>
   );

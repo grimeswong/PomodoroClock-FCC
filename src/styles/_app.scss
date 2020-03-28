@@ -12,6 +12,7 @@
     flex-direction: column;
     h1 {
       padding: 20px;
+      font-size: 3.5rem;
     }
     button {
       cursor: pointer;
@@ -25,6 +26,7 @@
       .control-wrapper {
         width: 50%;
         padding: 30px;
+        font-size: 1.5rem;
         div {
           padding: 5px 10px;
         }
@@ -36,7 +38,14 @@
       width: 500px;
       box-sizing: border-box;
       background-color: rgb(122, 87, 142);
+      font-size: 1.5rem;
       border-radius: 5px;
+      #time-left {
+        margin: 20px;
+        padding: 40px;
+        background-color: black;
+        font-size: 3rem;
+      }
     }
     .control div, button {
       display: inline-block;
