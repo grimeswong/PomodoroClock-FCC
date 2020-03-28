@@ -6,19 +6,26 @@ function App() {
     <div className="App">
       <div className="wrapper">
         <h1>Pomodoro Clock</h1>
-        <div className="break-wrapper">
-          <div id="break-label">Break Length</div>
-          <button id="break-decrement">Break Decrement</button>
-          <div id="break-length">5</div>
-          <button id="break-increment">Break Increment</button>
+        <div className="setting-wrapper">
+          <div className="control-wrapper">
+            <div id="session-label">Session Length</div>
+            <div className="control">
+              <button id="session-decrement">Down</button>
+              <div id="session-length">25</div>
+              <button id="session-Increment">Up</button>
+            </div>
+          </div>
+          <div className="control-wrapper">
+            <div id="break-label">Break Length</div>
+            <div className="control">
+              <button id="break-decrement">Down</button>
+              <div id="break-length">5</div>
+              <button id="break-increment">Up</button>
+            </div>
+          </div>
         </div>
-        <div className="session-wrapper">
-          <div id="session-label">Session Length</div>
-          <button id="session-decrement">Session Decrement</button>
-          <div id="session-length">25</div>
-          <button id="session-Increment">Session Increment</button>
-        </div>
-        <div className="timer-wrapper">
+
+        <div className="countdown-wrapper">
           <div id="timer-label">Session</div>
           <div id="time-left">mm:ss</div>
           <button id="start_stop">Start/Stop</button>
