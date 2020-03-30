@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
 import './styles/main.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronUp, faChevronDown, faPlay, faPause, faStop, faSync} from '@fortawesome/free-solid-svg-icons'
+import { faChevronUp, faChevronDown, faPlay, faPause, faSync} from '@fortawesome/free-solid-svg-icons'
 
 function App() {
 
   let [sessionLength, setSessionLength] = useState(25);
   let [breakLength, setBreakLength] = useState(5);
+  let [playCountDown, setPlayCountDown] = useState(false);
+  let [timer, setTimer] = useState(25);
 
   const sessionSet = (e) => {
     console.log(e.target.value);
     if(e.target.value === "up" && sessionLength < 60) {
       setSessionLength(sessionLength + 1);
+      if(playCountDown === false) {
+        setTimer(sessionLength + 1);
+      }
     }
     if(e.target.value === "down" && sessionLength > 0) {
       setSessionLength(sessionLength - 1);
+      if(playCountDown === false) {
+        setTimer(sessionLength - 1);
+      }
     }
   }
 
@@ -27,6 +35,18 @@ function App() {
       setBreakLength(breakLength - 1);
     }
   }
+
+  const play = () => {
+    console.log("play");
+    console.log(playCountDown);
+    setPlayCountDown(!playCountDown);
+    if(playCountDown) {
+      setInterval(() => {
+        console.log("Time is ticking")
+      }, 3000)
+    }
+  }
+
 
   return (
     <div className="App">
@@ -55,8 +75,8 @@ function App() {
 
         <div className="countdown-wrapper">
           <div id="timer-label">Session</div>
-          <div id="time-left">{sessionLength}:00</div>
-          <button id="start_stop"><FontAwesomeIcon icon={faPlay} size="lg" /> | <FontAwesomeIcon icon={faPause} size="lg" /></button>
+          <div id="time-left">{timer}:00</div>
+          <button id="start_stop" onClick={play}><FontAwesomeIcon icon={faPlay} size="lg" /> | <FontAwesomeIcon icon={faPause} size="lg" /></button>
           <button id="reset"><FontAwesomeIcon icon={faSync} size="lg" /> Reset</button>
         </div>
       </div>
