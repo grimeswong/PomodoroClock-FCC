@@ -10,7 +10,7 @@ class App extends Component {
       sessionLength: 25,
       breakLength: 5,
       playCountDown: false,
-      timer: 25
+      timer: 1500
     }
   }
 
@@ -19,13 +19,13 @@ class App extends Component {
     if(e.target.value === "up" && this.state.sessionLength < 60) {
       this.setState({sessionLength: this.state.sessionLength + 1});
       if(this.state.playCountDown === false) {
-        this.setState({timer: this.state.sessionLength + 1});
+        this.setState({timer: (this.state.sessionLength + 1) * 60});
       }
     }
     if(e.target.value === "down" && this.state.sessionLength > 0) {
       this.setState({sessionLength: this.state.sessionLength - 1});
       if(this.state.playCountDown === false) {
-        this.setState({timer: this.state.sessionLength - 1});
+        this.setState({timer: (this.state.sessionLength - 1) * 60});
       }
     }
   }
@@ -45,7 +45,7 @@ class App extends Component {
       sessionLength: 25,
       breakLength: 5,
       playCountDown: false,
-      timer: 25
+      timer: 1500
     })
     clearInterval(this.countDown);
   }
@@ -63,8 +63,17 @@ class App extends Component {
   }
 
   timeTicker = () => {
-    this.setState({timer: this.state.timer - 1})
-    console.log("Time is ticking");
+    if(this.state.timer > 0) {
+      this.setState({timer: this.state.timer - 1})
+      console.log("Time is ticking");
+    }
+  }
+
+  displayClock = () => {
+    let minutes = Math.floor(this.state.timer / 60)
+    let seconds = this.state.timer % 60
+    let display = `${minutes<10?"0"+minutes:minutes} : ${seconds<10?"0" + seconds:seconds}`
+    return display
   }
 
   render() {
@@ -93,7 +102,7 @@ class App extends Component {
 
           <div className="timer-wrapper">
             <div id="timer-label">Session</div>
-            <div id="time-left">{this.state.timer}:00</div>
+            <div id="time-left">{this.displayClock()}</div>
             <button id="start_stop" onClick={this.play}><FontAwesomeIcon icon={faPlay} size="lg" /> | <FontAwesomeIcon icon={faPause} size="lg" /></button>
             <button id="reset" onClick={this.reset}><FontAwesomeIcon icon={faSync} size="lg" /> Reset</button>
           </div>
