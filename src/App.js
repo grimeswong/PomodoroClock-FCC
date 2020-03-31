@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import './styles/main.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown, faPlay, faPause, faSync} from '@fortawesome/free-solid-svg-icons'
@@ -40,23 +40,20 @@ class App extends Component {
     }
   }
 
-  play = () => {
+  play = async () => {
     console.log("play");
+    await this.setState({playCountDown: !this.state.playCountDown}); // wait for the setState finish before start the next step
     console.log(this.state.playCountDown);
-    this.setState({playCountDown: !this.state.playCountDown});
-    console.log(this.state.playCountDown);
-    if(this.state.playCountDown===true) {
-      this.timeTicking();
+    if(this.state.playCountDown) {
+      this.countDown = setInterval(this.timeTicker, 2000);
     } else {
-      clearInterval(this.timeTicking());
+      clearInterval(this.countDown);
       console.log("Time is stopped");
     }
   }
 
-  timeTicking = () => {
-    setInterval(() => {
-      console.log("Time is ticking");
-    }, 2000);
+  timeTicker = () => {
+    console.log("Time is ticking");
   }
 
   render() {
