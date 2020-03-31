@@ -40,6 +40,16 @@ class App extends Component {
     }
   }
 
+  reset = () => {
+    this.setState({
+      sessionLength: 25,
+      breakLength: 5,
+      playCountDown: false,
+      timer: 25
+    })
+    clearInterval(this.countDown);
+  }
+
   play = async () => {
     console.log("play");
     await this.setState({playCountDown: !this.state.playCountDown}); // wait for the setState finish before start the next step
@@ -85,7 +95,7 @@ class App extends Component {
             <div id="timer-label">Session</div>
             <div id="time-left">{this.state.timer}:00</div>
             <button id="start_stop" onClick={this.play}><FontAwesomeIcon icon={faPlay} size="lg" /> | <FontAwesomeIcon icon={faPause} size="lg" /></button>
-            <button id="reset"><FontAwesomeIcon icon={faSync} size="lg" /> Reset</button>
+            <button id="reset" onClick={this.reset}><FontAwesomeIcon icon={faSync} size="lg" /> Reset</button>
           </div>
         </div>
       </div>
