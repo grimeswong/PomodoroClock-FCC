@@ -45,7 +45,7 @@ class App extends Component {
     await this.setState({playCountDown: !this.state.playCountDown}); // wait for the setState finish before start the next step
     console.log(this.state.playCountDown);
     if(this.state.playCountDown) {
-      this.countDown = setInterval(this.timeTicker, 2000);
+      this.countDown = setInterval(this.timeTicker, 1000);
     } else {
       clearInterval(this.countDown);
       console.log("Time is stopped");
@@ -53,6 +53,7 @@ class App extends Component {
   }
 
   timeTicker = () => {
+    this.setState({timer: this.state.timer - 1})
     console.log("Time is ticking");
   }
 
