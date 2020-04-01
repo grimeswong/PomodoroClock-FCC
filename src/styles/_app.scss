@@ -46,12 +46,19 @@
       background-color: rgb(122, 87, 142);
       font-size: 1.5rem;
       border-radius: 5px;
+
       #time-left {
         margin: 20px;
         padding: 40px;
         background-color: black;
         font-size: 3rem;
       }
+    }
+    .session-colour {
+      color: #fff;
+    }
+    .break-colour {
+      color: #60d008;
     }
     .control div, button {
       display: inline-block;

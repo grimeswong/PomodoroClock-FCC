@@ -114,8 +114,8 @@ class App extends Component {
             </div>
           </div>
 
-          <div className="timer-wrapper">
-            <div id="timer-label">{this.state.break?"Break":"Session"}</div>
+          <div className={this.state.break?"timer-wrapper break-colour":" timer-wrapper session-colour"}>
+            <div id="timer-label">{this.state.break?"Break Count Down":"Session Count Down"}</div>
             <div id="time-left">{this.displayClock()}</div>
             <button id="start_stop" onClick={this.play}><FontAwesomeIcon icon={faPlay} size="lg" /> | <FontAwesomeIcon icon={faPause} size="lg" /></button>
             <button id="reset" onClick={this.reset}><FontAwesomeIcon icon={faSync} size="lg" /> Reset</button>
