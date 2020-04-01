@@ -10,7 +10,8 @@ class App extends Component {
       sessionLength: 25,
       breakLength: 5,
       playCountDown: false,
-      timer: 1500
+      timer: 1500,
+      break: false,
     }
   }
 
@@ -62,10 +63,23 @@ class App extends Component {
     }
   }
 
-  timeTicker = () => {
+  timeTicker = async () => {
     if(this.state.timer > 0) {
       this.setState({timer: this.state.timer - 1})
       console.log("Time is ticking");
+    } else {
+      console.log("Timer is zero now!!!")
+      if(this.state.break === false) {
+        this.setState({
+          timer: this.state.breakLength * 60,
+          break: true,
+        })
+      } else {
+        this.setState({
+          timer: this.state.sessionLength * 60,
+          break: false,
+        })
+      }
     }
   }
 
@@ -101,7 +115,7 @@ class App extends Component {
           </div>
 
           <div className="timer-wrapper">
-            <div id="timer-label">Session</div>
+            <div id="timer-label">{this.state.break?"Break":"Session"}</div>
             <div id="time-left">{this.displayClock()}</div>
             <button id="start_stop" onClick={this.play}><FontAwesomeIcon icon={faPlay} size="lg" /> | <FontAwesomeIcon icon={faPause} size="lg" /></button>
             <button id="reset" onClick={this.reset}><FontAwesomeIcon icon={faSync} size="lg" /> Reset</button>
