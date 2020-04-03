@@ -86,7 +86,7 @@ class App extends Component {
   displayClock = () => {
     let minutes = Math.floor(this.state.timer / 60)
     let seconds = this.state.timer % 60
-    let display = `${minutes<10?"0"+minutes:minutes} : ${seconds<10?"0" + seconds:seconds}`
+    let display = `${minutes<10?"0"+minutes:minutes}:${seconds<10?"0" + seconds:seconds}`
     return display
   }
 
@@ -101,7 +101,7 @@ class App extends Component {
               <div className="control">
                 <button id="session-decrement" onClick={(e) => this.sessionSet(e)} value="down"><FontAwesomeIcon className="icon" icon={faChevronDown} size="lg" /></button>
                 <div id="session-length">{this.state.sessionLength}</div>
-                <button id="session-Increment" onClick={(e) => this.sessionSet(e)} value="up"><FontAwesomeIcon className="icon" icon={faChevronUp} size="lg" /></button>
+                <button id="session-increment" onClick={(e) => this.sessionSet(e)} value="up"><FontAwesomeIcon className="icon" icon={faChevronUp} size="lg" /></button>
               </div>
             </div>
             <div className="control-wrapper">
