@@ -12,6 +12,7 @@ class App extends Component {
       playCountDown: false,
       timer: 1500,
       break: false,
+      intervalId: "",
     }
   }
 
@@ -23,7 +24,7 @@ class App extends Component {
         this.setState({timer: (this.state.sessionLength + 1) * 60});
       }
     }
-    if(e.target.value === "down" && this.state.sessionLength > 0) {
+    if(e.target.value === "down" && this.state.sessionLength > 1) {
       this.setState({sessionLength: this.state.sessionLength - 1});
       if(this.state.playCountDown === false) {
         this.setState({timer: (this.state.sessionLength - 1) * 60});
@@ -36,19 +37,20 @@ class App extends Component {
     if(e.target.value === "up" && this.state.breakLength < 60) {
       this.setState({breakLength: this.state.breakLength + 1});
     }
-    if(e.target.value === "down" && this.state.breakLength > 0) {
+    if(e.target.value === "down" && this.state.breakLength > 1) {
       this.setState({breakLength: this.state.breakLength - 1});
     }
   }
 
   reset = () => {
+    clearInterval(this.state.intervalId);
     this.setState({
       sessionLength: 25,
       breakLength: 5,
       playCountDown: false,
-      timer: 1500
+      timer: 1500,
+      intervalId: "",
     })
-    clearInterval(this.countDown);
   }
 
   play = async () => {
@@ -56,9 +58,14 @@ class App extends Component {
     await this.setState({playCountDown: !this.state.playCountDown}); // wait for the setState finish before start the next step
     console.log(this.state.playCountDown);
     if(this.state.playCountDown) {
-      this.countDown = setInterval(this.timeTicker, 1000);
+      let tempId = setInterval(this.timeTicker, 1000);
+      this.setState({
+        intervalId: tempId
+      })
+      console.log(this.state.intervalId);
     } else {
-      clearInterval(this.countDown);
+      console.log(`intervalId = ${this.state.intervalId}`);
+      clearInterval(this.state.intervalId);
       console.log("Time is stopped");
     }
   }
@@ -90,6 +97,13 @@ class App extends Component {
     return display
   }
 
+  componentDidMount() {
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js";
+    document.head.appendChild(script);
+  }
+
   render() {
     return (
       <div className="App">
@@ -115,7 +129,7 @@ class App extends Component {
           </div>
 
           <div className={this.state.break?"timer-wrapper break-colour":" timer-wrapper session-colour"}>
-            <div id="timer-label">{this.state.break?"Break Count Down":"Session Count Down"}</div>
+            <div id="timer-label">{this.state.break?"Break":"Session"}</div>
             <div id="time-left">{this.displayClock()}</div>
             <button id="start_stop" onClick={this.play}><FontAwesomeIcon icon={faPlay} size="lg" /> | <FontAwesomeIcon icon={faPause} size="lg" /></button>
             <button id="reset" onClick={this.reset}><FontAwesomeIcon icon={faSync} size="lg" /> Reset</button>
