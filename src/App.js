@@ -49,6 +49,7 @@ class App extends Component {
       breakLength: 5,
       playCountDown: false,
       timer: 1500,
+      break: false,
       intervalId: "",
     })
   }
