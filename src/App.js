@@ -18,15 +18,13 @@ class App extends Component {
 
   sessionSet = (e) => {
     console.log(e.target.value);
-    if(e.target.value === "up" && this.state.sessionLength < 60) {
-      this.setState({sessionLength: this.state.sessionLength + 1});
-      if(this.state.playCountDown === false) {
+    if(this.state.playCountDown === false) {
+      if(e.target.value === "up" && this.state.sessionLength < 60) {
+        this.setState({sessionLength: this.state.sessionLength + 1});
         this.setState({timer: (this.state.sessionLength + 1) * 60});
       }
-    }
-    if(e.target.value === "down" && this.state.sessionLength > 1) {
-      this.setState({sessionLength: this.state.sessionLength - 1});
-      if(this.state.playCountDown === false) {
+      if(e.target.value === "down" && this.state.sessionLength > 1) {
+        this.setState({sessionLength: this.state.sessionLength - 1});
         this.setState({timer: (this.state.sessionLength - 1) * 60});
       }
     }
@@ -34,15 +32,18 @@ class App extends Component {
 
   breakSet = (e) => {
     console.log(e.target.value);
-    if(e.target.value === "up" && this.state.breakLength < 60) {
-      this.setState({breakLength: this.state.breakLength + 1});
-    }
-    if(e.target.value === "down" && this.state.breakLength > 1) {
-      this.setState({breakLength: this.state.breakLength - 1});
+    if(this.state.playCountDown === false) {
+      if(e.target.value === "up" && this.state.breakLength < 60) {
+        this.setState({breakLength: this.state.breakLength + 1});
+      }
+      if(e.target.value === "down" && this.state.breakLength > 1) {
+        this.setState({breakLength: this.state.breakLength - 1});
+      }
     }
   }
 
   reset = () => {
+    console.log(`Reset intervalId = ${this.state.intervalId}`);
     clearInterval(this.state.intervalId);
     this.setState({
       sessionLength: 25,
@@ -52,6 +53,7 @@ class App extends Component {
       break: false,
       intervalId: "",
     })
+    console.log(`After Reset intervalId = ${this.state.intervalId}`);
   }
 
   play = async () => {
@@ -63,9 +65,9 @@ class App extends Component {
       this.setState({
         intervalId: tempId
       })
-      console.log(this.state.intervalId);
+      console.log(`Play intervalId = ${this.state.intervalId}`);
     } else {
-      console.log(`intervalId = ${this.state.intervalId}`);
+      console.log(`Stop intervalId = ${this.state.intervalId}`);
       clearInterval(this.state.intervalId);
       console.log("Time is stopped");
     }
