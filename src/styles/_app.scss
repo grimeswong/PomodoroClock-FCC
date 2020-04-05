@@ -1,5 +1,69 @@
 .App {
+  width: 100vw;
+  height: 100vh;
   text-align: center;
-  color: black;
-  background-color: white;
+  color: white;
+  background-color: rgb(0, 102, 167);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    h1 {
+      padding: 20px;
+      font-size: 3.5rem;
+    }
+    button {
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+    }
+    svg {
+      position: relative;  // avoid fontawesome icon cover the clickable button
+      z-index: -1;
+    }
+    .setting-wrapper {
+      display: flex;
+      width: 500px;
+      box-sizing: border-box;
+      background-color: rgb(44, 124, 22);
+      border-radius: 5px;
+      .control-wrapper {
+        width: 50%;
+        padding: 30px;
+        font-size: 1.5rem;
+        div {
+          padding: 5px 10px;
+        }
+      }
+    }
+    .timer-wrapper {
+      margin: 30px auto;
+      padding: 30px;
+      width: 500px;
+      box-sizing: border-box;
+      background-color: rgb(122, 87, 142);
+      font-size: 1.5rem;
+      border-radius: 5px;
+
+      #time-left {
+        margin: 20px;
+        padding: 40px;
+        background-color: black;
+        font-size: 3rem;
+      }
+    }
+    .session-colour {
+      color: #fff;
+    }
+    .break-colour {
+      color: #60d008;
+    }
+    .control div, button {
+      display: inline-block;
+      font-size: 1.5rem;
+    }
+  }
+
 }
