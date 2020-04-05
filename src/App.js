@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './styles/main.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown, faPlay, faPause, faSync} from '@fortawesome/free-solid-svg-icons'
+import alarm from "./media/analog-watch-alarm_.mp3"
 
 class App extends Component {
   constructor(props) {
@@ -44,6 +45,9 @@ class App extends Component {
 
   reset = () => {
     console.log(`Reset intervalId = ${this.state.intervalId}`);
+    const playbeep = document.getElementById("beep");
+    playbeep.pause();
+    playbeep.currentTime = 0; // Avoid the clip delay due to another command is coming up
     clearInterval(this.state.intervalId);
     this.setState({
       sessionLength: 25,
@@ -80,6 +84,9 @@ class App extends Component {
       console.log("Time is ticking");
     } else {
       console.log("Timer is zero now!!!")
+      const playbeep = document.getElementById("beep");
+      playbeep.play();
+      playbeep.currentTime = 0; // Avoid the clip delay due to another command is coming up
       if(this.state.break === false) {
         this.setState({
           timer: this.state.breakLength * 60,
@@ -137,6 +144,7 @@ class App extends Component {
             <div id="time-left">{this.displayClock()}</div>
             <button id="start_stop" onClick={this.play}><FontAwesomeIcon icon={faPlay} size="lg" /> | <FontAwesomeIcon icon={faPause} size="lg" /></button>
             <button id="reset" onClick={this.reset}><FontAwesomeIcon icon={faSync} size="lg" /> Reset</button>
+            <audio id="beep" src={alarm} ></audio>
           </div>
         </div>
       </div>
