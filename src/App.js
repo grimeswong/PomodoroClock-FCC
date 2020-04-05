@@ -56,25 +56,25 @@ class App extends Component {
     console.log(`After Reset intervalId = ${this.state.intervalId}`);
   }
 
-  play = async () => {
-    clearInterval(this.state.intervalId);
+  play = () => {
     console.log("start/pause count down");
-    await this.setState({playCountDown: !this.state.playCountDown}); // wait for the setState finish before start the next step
-    console.log(`playCountDown = ${this.state.playCountDown}`);
-    if(this.state.playCountDown) {
-      let tempId = setInterval(this.timeTicker, 1000);
-      this.setState({
-        intervalId: tempId
-      })
-      console.log(`Play intervalId = ${this.state.intervalId}`);
-    } else {
-      console.log(`Stop intervalId = ${this.state.intervalId}`);
-      clearInterval(this.state.intervalId);
-      console.log("Time is stopped");
-    }
+    this.setState({playCountDown: !this.state.playCountDown}, () => { // make a callback after setState is finished
+      console.log(`playCountDown = ${this.state.playCountDown}`);
+      if(this.state.playCountDown) {
+        let tempId = setInterval(this.timeTicker, 1000);
+        this.setState({
+          intervalId: tempId
+        }, () => console.log(`Play intervalId = ${this.state.intervalId}`))
+      } else {
+        console.log(`Stop intervalId = ${this.state.intervalId}`);
+        clearInterval(this.state.intervalId);
+        console.log("Time is stopped");
+      }
+
+    }); // wait for the setState finish before start the next step
   }
 
-  timeTicker = async () => {
+  timeTicker = () => {
     if(this.state.timer > 0) {
       this.setState({timer: this.state.timer - 1})
       console.log("Time is ticking");
