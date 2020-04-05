@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   sessionSet = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     if(this.state.playCountDown === false) {
       if(e.target.value === "up" && this.state.sessionLength < 60) {
         this.setState({sessionLength: this.state.sessionLength + 1});
@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   breakSet = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     if(this.state.playCountDown === false) {
       if(e.target.value === "up" && this.state.breakLength < 60) {
         this.setState({breakLength: this.state.breakLength + 1});
@@ -57,9 +57,10 @@ class App extends Component {
   }
 
   play = async () => {
-    console.log("play");
+    clearInterval(this.state.intervalId);
+    console.log("start/pause count down");
     await this.setState({playCountDown: !this.state.playCountDown}); // wait for the setState finish before start the next step
-    console.log(this.state.playCountDown);
+    console.log(`playCountDown = ${this.state.playCountDown}`);
     if(this.state.playCountDown) {
       let tempId = setInterval(this.timeTicker, 1000);
       this.setState({
